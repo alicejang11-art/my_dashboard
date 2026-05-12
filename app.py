@@ -167,7 +167,7 @@ for _, row in df3_raw.iterrows():
         rows.append({
             "연도": row["연도"],
             "국가": c,
-            "청년실업률": row[f"{c}_실업률"],
+            "실업률": row[f"{c}_실업률"],
             "해외취업자수": row[f"{c}_취업"],
         })
 df3 = pd.DataFrame(rows).dropna()
