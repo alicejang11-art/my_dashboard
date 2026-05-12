@@ -167,14 +167,14 @@ for _, row in df3_raw.iterrows():
         rows.append({
             "연도": row["연도"],
             "국가": c,
-            "실업률": row[f"{c}_실업률"],
+            "청년실업률": row[f"{c}_실업률"],
             "해외취업자수": row[f"{c}_취업"],
         })
 df3 = pd.DataFrame(rows).dropna()
 
 fig3 = px.scatter(
     df3,
-    x="청년실업률", y="해외취업자수",
+    x="실업률", y="해외취업자수",
     color="국가", size="해외취업자수",
     hover_data=["연도"],
     trendline="ols",
