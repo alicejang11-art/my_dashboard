@@ -58,7 +58,7 @@ st.markdown("---")
 st.subheader("📈 Chart 1 · 연도별 국가별 한국인 해외취업 수")
 
 SQL1 = f"""
-SELECT 연도, 미국, 싱가포르, 호주, 아랍에미리트, 중국, 캐나다, 베트남, 인도네시아, 독일
+SELECT 연도, 미국, 일본, 싱가포르, 호주, 아랍에미리트, 중국, 캐나다, 베트남, 인도네시아, 독일
 FROM   해외취업연도별통계
 WHERE  연도 BETWEEN {start_y} AND {end_y}
 ORDER  BY 연도
