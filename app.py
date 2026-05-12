@@ -174,13 +174,13 @@ df3 = pd.DataFrame(rows).dropna()
 
 fig3 = px.scatter(
     df3,
-    x="실업률", y="해외취업자수",
+    x="청년실업률", y="해외취업자수",
     color="국가", size="해외취업자수",
     hover_data=["연도"],
     trendline="ols",
     trendline_scope="overall",
     title="국가별 실업률 vs 한국인 해외취업자 수",
-    labels={"실업률": "청년 실업률 (%)", "해외취업자수": "해외취업자 수 (명)"},
+    labels={"실업률": "실업률 (%)", "해외취업자수": "해외취업자 수 (명)"},
     color_discrete_sequence=px.colors.qualitative.Bold,
 )
 fig3.update_layout(legend_title_text="국가")
