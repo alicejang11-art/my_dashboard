@@ -84,59 +84,8 @@ with st.expander("🔍 사용한 SQL 보기"):
 
 st.info(
     "💡 **인사이트**\n"
-    
-with st.sidebar:
-    st.header("🔧 필터")
-    year_df = run_query("SELECT MIN(연도) AS min_y, MAX(연도) AS max_y FROM 해외취업연도별통계")
-    min_year = int(year_df["min_y"].iloc[0])
-    max_year = int(year_df["max_y"].iloc[0])
-    year_range = st.slider(
-        "분석 연도 범위",
-        min_value=min_year,
-        max_value=max_year,
-        value=(min_year, max_year),
-    )
-    st.markdown("---")
-    st.info("차트 아래 'SQL 보기'를 펼치면\n사용된 쿼리를 확인할 수 있습니다.")
-
-start_y, end_y = year_range
-
-# ──────────────────────────────────────────
-# 차트 1: 연도별 국가별 한국인 해외취업 수 (라인 차트)
-# ──────────────────────────────────────────
-st.markdown("---")
-st.subheader("📈 Chart 1 · 연도별 국가별 한국인 해외취업 수")
-
-SQL1 = f"""
-SELECT 연도, 미국, 일본, 싱가포르, 호주, 아랍에미리트, 중국, 캐나다, 베트남, 인도네시아, 독일, 기타
-FROM   해외취업연도별통계
-WHERE  연도 BETWEEN {start_y} AND {end_y}
-ORDER  BY 연도
-"""
-df1 = run_query(SQL1)
-
-# wide → long 변환 (Plotly가 선호하는 형태)
-df1_long = df1.melt(id_vars="연도", var_name="국가", value_name="취업자수")
-
-fig1 = px.line(
-    df1_long,
-    x="연도", y="취업자수", color="국가",
-    markers=True,
-    title="연도별 국가별 한국인 해외취업자 수",
-    labels={"취업자수": "취업자 수 (명)", "연도": "연도"},
-    color_discrete_sequence=px.colors.qualitative.Set2,
-)
-fig1.update_layout(hovermode="x unified", legend_title_text="국가")
-st.plotly_chart(fig1, use_container_width=True)
-
-with st.expander("🔍 사용한 SQL 보기"):
-    st.code(SQL1, language="sql")
-
-st.info(
-    "💡 **인사이트**\n"
-    "- 일본의 독주가 두드러집니다. 2015년부터 구인처 수가 급증해 2018년 약 230여 곳으로 타 국가를 압도하며, 한국인 채용 수요가 구조적으로 가장 큰 시장임을 보여줍니다.\n"
-    "- 반면 중국은 한·중 관계 변화와 맞물려 특정 시점(2017년) 이후 감소 흐름이 관찰됩니다.\n"
     "- 국가별 해외취업 규모 차이가 뚜렷하게 나타났으며, 미국·일본 중심으로 해외취업이 집중되는 경향이 확인되었습니다.\n"
+    "- 반면 중국은 한·중 관계 변화와 맞물려 특정 시점(2017년) 이후 감소 흐름이 관찰됩니다.\n"
     "- 코로나 시기인 2020~2021년에는 대부분 국가에서 해외취업 규모가 감소하는 흐름이 나타났으며, 일본과 호주의 감소 폭이 상대적으로 크게 나타났습니다."
 )
 
