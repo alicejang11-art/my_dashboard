@@ -1,7 +1,7 @@
 # my_dashboard
 
 - ai link  
-  https://sookmyung.factchat.bot/dashboard/chat/28139/e8cb7c82-3ecf-443b-88a7-a3e2507359a7
+  https://chatgpt.com/share/6a0a8d53-5d84-83a9-b7d6-edb616deaf14
 
 - 데이터
 
